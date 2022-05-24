@@ -79,7 +79,8 @@ function App() {
   return (
     <div className="Container">
       <div className="word-wrapper">
-        <p className="word">{maskedWord}</p>
+        {!loseStatus && <p className="word">{maskedWord}</p>}
+        {loseStatus && <p className="word">{word}</p>}
       </div>
       <div className="keyboard">
         <div className="keyboard-row">
