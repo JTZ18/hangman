@@ -29,13 +29,14 @@ function App() {
     const word = response.data[0].word
     const hint = response.data[0].definition
     setWord(word.toUpperCase())
-    console.log(word)
     setHint(hint)
   }
 
   const handlePlayAgain = () => {
     setCorrectGuesses([])
     setWinStatus(false)
+    setLoseStatus(false)
+    setTriesLeft(6)
     getWord()
   }
 
@@ -49,7 +50,6 @@ function App() {
         if (triesLeft === 0) {
           setLoseStatus(true)
         }
-        console.log(triesLeft)
       }
     }
   }
