@@ -154,4 +154,9 @@ const FigureWrap = styled.div`
   0 32px 64px rgba(0,0,0,0.07);
   transform: scale(0.5);
   margin-top: -50px;
+
+  @media only screen and (min-width: 800px) {
+    transform: scale(1);
+    margin-bottom: 50px;
+  }
 `
