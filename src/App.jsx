@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import axios from 'axios';
+import Figure from './components/Figure.jsx'
+import styled from 'styled-components'
+import BlobAnimation from './components/BlobAnimation.jsx'
 
 
 function App() {
@@ -75,9 +78,25 @@ function App() {
     }
   }, [loseStatus]);
 
+  useEffect(() => {
+    setMaskedWord(() => {
+      return word.split('').map(letter => 
+        correctGuesses.includes(letter) ? letter : "_").join(" ");
+    })
+  }, [word]);
+
 
   return (
     <div className="Container">
+
+      <BlobWrapper>
+        <BlobAnimation />
+      </BlobWrapper>
+
+      <FigureWrap>
+        <Figure triesLeft={triesLeft} />
+      </FigureWrap>
+
       <div className="word-wrapper">
         {!loseStatus && <p className="word">{maskedWord}</p>}
         {loseStatus && <p className="word">{word}</p>}
@@ -116,3 +135,23 @@ function App() {
 
 export default App
 
+const BlobWrapper = styled.div`
+  position: relative;
+  top: -30px;
+  left: -700px;
+`
+const FigureWrap = styled.div`
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(20, 20, 20, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+  0 2px 4px rgba(0,0,0,0.07), 
+  0 4px 8px rgba(0,0,0,0.07), 
+  0 8px 16px rgba(0,0,0,0.07),
+  0 16px 32px rgba(0,0,0,0.07), 
+  0 32px 64px rgba(0,0,0,0.07);
+  transform: scale(0.5);
+  margin-top: -50px;
+`
