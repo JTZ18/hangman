@@ -59,8 +59,13 @@ function App() {
 
 
   const handleKeyPress = (keyCode) => {
-    if (keyCode != null  && keyCode >= 65 && keyCode <= 90) {
-      handleKeyboardClick(letters[keyCode- 65])
+    if (keyCode != null) {
+      if (keyCode >= 65 && keyCode <= 90){
+        handleKeyboardClick(letters[keyCode- 65])
+      }
+      if (keyCode == 13) {
+        handlePlayAgain()
+      }
     }
   }
 
