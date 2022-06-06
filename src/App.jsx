@@ -22,7 +22,7 @@ function App() {
   const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const row3 = ["Z", "X", "C", "V", "B", "N", "M"];
-
+  const letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
    
 
@@ -58,6 +58,18 @@ function App() {
   }
 
 
+  const handleKeyPress = (keyCode) => {
+    if (keyCode != null) {
+      if (keyCode >= 65 && keyCode <= 90){
+        handleKeyboardClick(letters[keyCode- 65])
+      }
+      if (keyCode == 13) {
+        handlePlayAgain()
+      }
+    }
+  }
+
+
   useEffect(() => {
     // constantly check if winning condition is met
     if (!maskedWord.includes("_")) {
@@ -87,7 +99,8 @@ function App() {
 
 
   return (
-    <div className="Container">
+    <div className="Container" tabIndex="0" autoFocus onKeyDown={(e) => {
+        handleKeyPress(e.keyCode)}}>
 
       <BlobWrapper>
         <BlobAnimation />
